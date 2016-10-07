@@ -1,0 +1,64 @@
+Entity sets:
+	Pokemon
+	Teams
+	Items
+		HealingItems
+		CombatItems
+		Balls
+	Gyms
+	Trainers
+	
+Pokemon:
+	CombatPoints
+	Name
+	Link to image
+		
+Trainers:
+	name
+	team
+	pokemon (many to many)
+	
+Teams:
+	name
+	color
+	members
+	
+Items:
+	name
+	Healing items:
+		amount healed
+	Combat items
+		amount of cp increased
+	Balls:
+		catch rate
+	
+Gyms:
+	id number
+	leader
+	members
+		
+Stores:
+	location
+	items (one to many)
+		
+	
+We will store information about pokemon. Pokemon will have combat points
+health points, name, and a link to an image of it. The name will uniquely
+identify the pokemon and be the key.
+
+Trainers are people who are identified by their name which is unique.
+Some are a part of a team. Many trainers can have many pokemon and a trainer
+can have multiple of the same pokemon.
+
+Teams have a one to many relationship with trainers. Each team is identified
+by its name and has its own color.
+
+An item has its own name that identifies the item. It can be either a healing
+item, a combat item, or a pokeball. 
+
+Stores have a unique location and many items.
+
+A gym has a number that uniquely identifies it. It also has a leader who is a
+trainer. It also has many members.
+
+This database is like a wiki for information about a pokemon game.
