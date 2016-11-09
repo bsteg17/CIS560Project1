@@ -12,3 +12,9 @@ How to open a pull request:
 8. click the 'compare' dropdown directly to the right and click on your branch name
 9. click create pull request
 10. fill out some info about your pull request and submit
+
+How to git pull changes from the base branch:
+
+1. run `git remote` if your console prints 'upstream' then skip to step 3
+2. run `git remote add upstream https://github.com/bsteg17/CIS560Project1`
+3. run `git pull upstream master` to pull from upstream master branch
