@@ -18,3 +18,8 @@ How to git pull changes from the base branch:
 1. run `git remote` if your console prints 'upstream' then skip to step 3
 2. run `git remote add upstream https://github.com/bsteg17/CIS560Project1`
 3. run `git pull upstream master` to pull from upstream master branch
+
+## Database connection
+
+login: `mkubis`, 
+password: `doina1`
