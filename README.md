@@ -1,6 +1,6 @@
 # CIS560Project1
 
-~~How to open a pull request:
+~~How to open a pull request:~~
 
 1. make sure all changes are committed
 2. run `git push origin [branch name]` (replace [branch name] with actual branch name)
