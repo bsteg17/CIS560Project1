@@ -1,7 +1,7 @@
 INSERT INTO healing_items(item_name, amount_healed) values('Max Potion', 750);
 INSERT INTO healing_items(item_name, amount_healed) values('Max Elixir', 300);
 INSERT INTO healing_items(item_name, amount_healed) values('Max Revive', 300);
-INSERT INTO healing_items(item_name, amount_healed) values('Max Revive', 300);
+INSERT INTO healing_items(item_name, amount_healed) values('Max Revive_2', 300);
 INSERT INTO healing_items(item_name, amount_healed) values('Rage Candy Bar', 300);
 INSERT INTO healing_items(item_name, amount_healed) values('Revival Herb', 300);
 INSERT INTO healing_items(item_name, amount_healed) values('Sacred Ash', 300);
@@ -101,7 +101,3 @@ INSERT INTO healing_items(item_name, amount_healed) values('Petaya Berry', 10);
 INSERT INTO healing_items(item_name, amount_healed) values('Apicot Berry', 10);
 INSERT INTO healing_items(item_name, amount_healed) values('Lansat Berry', 10);
 INSERT INTO healing_items(item_name, amount_healed) values('Starf Berry', 10);
-
-
-
-
