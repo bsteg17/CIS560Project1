@@ -100,3 +100,4 @@ insert into stores(city_name,loc) values ('Kachemak City','Alaska');
 insert into stores(city_name,loc) values ('Las Animas','Colorado');
 
 
+
