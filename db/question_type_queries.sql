@@ -1,8 +1,16 @@
 -- 1) Which team has the most of gyms? Tyler
+select team_name, c from
+	(select team_name, count(*) as c from trainers
+	join teams on teams.team_name=trainers.team_name group by trainers.team_name) as s
+	having c = (select max(x.xc) from
+		(select t.team_name, count(t.album_id) as xc
+		from trainers as t
+		group by trainers.team_name) as x);
 
 -- 2) Which pokemons were caught the most times? Erisa
 
 -- 3) Range of price of items? Tyler
+select item_name from items where price>=100 and price<=200;
 
 -- 4) Which trainers have the most pokemons? Erisa
 
