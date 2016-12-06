@@ -17,3 +17,4 @@
 -- 9) In which cities can be healing items found? Martin
 
 -- 10) Which trainer catch the most pokemons per day? Erisa
+--
