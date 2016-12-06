@@ -55,7 +55,7 @@ INSERT INTO pokemons values('Psyduck', 'http://cdn.bulbagarden.net/upload/5/53/0
 INSERT INTO pokemons values('Golduck', 'http://cdn.bulbagarden.net/upload/f/fe/055Golduck.png', 82, 80);
 INSERT INTO pokemons values('Mankey', 'http://cdn.bulbagarden.net/upload/4/41/056Mankey.png', 80, 40);
 INSERT INTO pokemons values('Primeape', 'http://cdn.bulbagarden.net/upload/9/9a/057Primeape.png', 105, 65);
-INSERT INTO pokemons values('Grwolithe', 'http://cdn.bulbagarden.net/upload/3/3d/058Growlithe.png', 70, 55);
+INSERT INTO pokemons values('Growlithe', 'http://cdn.bulbagarden.net/upload/3/3d/058Growlithe.png', 70, 55);
 INSERT INTO pokemons values('Arcanine', 'http://cdn.bulbagarden.net/upload/b/b8/059Arcanine.png', 110, 90);
 INSERT INTO pokemons values('Poliwag', 'http://cdn.bulbagarden.net/upload/4/49/060Poliwag.png', 50, 40);
 INSERT INTO pokemons values('Poliwhirl', 'http://cdn.bulbagarden.net/upload/a/a9/061Poliwhirl.png', 65, 65);
@@ -128,7 +128,7 @@ INSERT INTO pokemons values('Pinsir', 'http://cdn.bulbagarden.net/upload/7/71/12
 INSERT INTO pokemons values('Tauros', 'http://cdn.bulbagarden.net/upload/b/b8/128Tauros.png', 100, 75);
 INSERT INTO pokemons values('Magikarp', 'http://cdn.bulbagarden.net/upload/0/02/129Magikarp.png', 10, 20);
 INSERT INTO pokemons values('Gyarados', 'http://cdn.bulbagarden.net/upload/4/41/130Gyarados.png', 125, 95);
-INSERT INTO pokemons values('Papras', 'http://cdn.bulbagarden.net/upload/a/ab/131Lapras.png', 85, 130);
+INSERT INTO pokemons values('Lapras', 'http://cdn.bulbagarden.net/upload/a/ab/131Lapras.png', 85, 130);
 INSERT INTO pokemons values('Ditto', 'http://cdn.bulbagarden.net/upload/3/36/132Ditto.png', 48, 48);
 INSERT INTO pokemons values('Eevee', 'http://cdn.bulbagarden.net/upload/e/e2/133Eevee.png', 55, 55);
 INSERT INTO pokemons values('Vaporeon', 'http://cdn.bulbagarden.net/upload/f/fd/134Vaporeon.png', 65, 130);
