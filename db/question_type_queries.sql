@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 44bb9f4270e5c3c8c974efaa316e4ae3dd76aa6a
 -- 1) Which team has the most of gyms? Tyler
 select team_name, c from
 	(select team_name, count(*) as c from trainers
@@ -12,24 +8,15 @@ select team_name, c from
 		group by trainers.team_name) as x);
 
 -- 2) Which pokemons were caught the most times? Erisa
-<<<<<<< HEAD
 select p.pokemon_name,image,cp,hp from pokemons p join (select pokemon_name , count(*) most from pokemons_trainers group by pokemon_name)x
 on x.pokemon_name=p.pokemon_name
-=======
-select p.pokemon_name,image,cp,hp from pokemons p join (select pokemon_name , count(*) most from pokemons_trainers group by pokemon_name)x 
-on x.pokemon_name=p.pokemon_name 
->>>>>>> 44bb9f4270e5c3c8c974efaa316e4ae3dd76aa6a
 where x.most=(select max(most2)from (select count(*) most2 from pokemons_trainers group by pokemon_name)y)
 
 -- 3) Range of price of items? Tyler
 select item_name from items where price>=100 and price<=200;
 
 -- 4) Which trainers have the most pokemons? Erisa
-<<<<<<< HEAD
 select t.trainer_name,t.team_name,x.most_pokemons from trainers t join (select * ,count(*) most_pokemons from pokemons_trainers
-=======
-select t.trainer_name,t.team_name,x.most_pokemons from trainers t join (select * ,count(*) most_pokemons from pokemons_trainers 
->>>>>>> 44bb9f4270e5c3c8c974efaa316e4ae3dd76aa6a
 group by trainer_name)x ont.trainer_name=x.trainer_name
 where x.most_pokemons=( select max(train) from(select * ,count(*) train from pokemons_trainers group by trainer_name)y)
 
@@ -42,8 +29,6 @@ where pokemon_name not in (
     where p.pokemon_name = pt.pokemon_name
 );
 -- 6) What are the average healing points among all healing items? Yisi
-
-<<<<<<< HEAD
 select avg(amount_healed) avg_healed from healing_items
 -- average combat points among all combat items
 select avg(cp) avg_cp from combat_items
@@ -71,19 +56,9 @@ join
 on p.hp = m.max_hp)x
 on x.pokemon_name = pt.pokemon_name
 
-=======
--- 7) Which members are leading the most gyms (including gym names)? Yisi
-
--- 8) Who owns the most valuable item among all kinds? Yisi
->>>>>>> 44bb9f4270e5c3c8c974efaa316e4ae3dd76aa6a
-
 -- 9) In which cities can be combat items found? Martin
 select ci.item_name, group_concat(distinct city_name,", ", loc separator "; ") cities
 from stores_items si, combat_items ci
 where ci.item_name = si.item_name
 group by ci.item_name;
 -- 10) Which trainer catch the most pokemons per day? Erisa
-<<<<<<< HEAD
-=======
---
->>>>>>> 44bb9f4270e5c3c8c974efaa316e4ae3dd76aa6a
