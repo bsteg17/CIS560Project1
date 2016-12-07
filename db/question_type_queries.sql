@@ -8,11 +8,17 @@ select team_name, c from
 		group by trainers.team_name) as x);
 
 -- 2) Which pokemons were caught the most times? Erisa
+select p.pokemon_name,image,cp,hp from pokemons p join (select pokemon_name , count(*) most from pokemons_trainers group by pokemon_name)x 
+on x.pokemon_name=p.pokemon_name 
+where x.most=(select max(most2)from (select count(*) most2 from pokemons_trainers group by pokemon_name)y)
 
 -- 3) Range of price of items? Tyler
 select item_name from items where price>=100 and price<=200;
 
 -- 4) Which trainers have the most pokemons? Erisa
+select t.trainer_name,t.team_name,x.most_pokemons from trainers t join (select * ,count(*) most_pokemons from pokemons_trainers 
+group by trainer_name)x ont.trainer_name=x.trainer_name
+where x.most_pokemons=( select max(train) from(select * ,count(*) train from pokemons_trainers group by trainer_name)y)
 
 -- 5) Which pokemons haven't been caught? Martin
 select *
