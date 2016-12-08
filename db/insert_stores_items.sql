@@ -38,9 +38,9 @@ insert into stores_items(city_name,loc,item_name) values ('Yardley','Pennsylvani
 insert into stores_items(city_name,loc,item_name) values ('Zelienople','Pennsylvania','X Attack_3');
 insert into stores_items(city_name,loc,item_name) values ('Zolfo Springs','Florida','X Defense_4');
 insert into stores_items(city_name,loc,item_name) values ('Adel','Georgia','X Accuracy_4');
-insert into stores_items(city_name,loc,item_name)  values ('Arizona City','Arizona','Dire Hit_4');
-insert into stores_items(city_name,loc,item_name) values ('Atlantic City','New Jersey','Dire Hit_4');
-insert into stores_items(city_name,loc,item_name) values ('Dime Box','Texas','X Accuracy_4','X Special_4');
+insert into stores_items(city_name,loc,item_name)  values ('Arizona City','Arizona','X Defense_4');
+insert into stores_items(city_name,loc,item_name) values ('Atlantic City','New Jersey','Dire Hit_3');
+insert into stores_items(city_name,loc,item_name) values ('Dime Box','Texas','X Special_3');
 insert into stores_items(city_name,loc,item_name) values ('Dunwoody','Georgia','X Special_4');
 insert into stores_items(city_name,loc,item_name) values ('Francis Mills','New Jersey','X Attack_5');
 insert into stores_items(city_name,loc,item_name)  values ('Gas City','Indiana','X Defense_5');
