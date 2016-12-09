@@ -1,0 +1,10 @@
+= form_for @gym do |f|
+  - if @gym.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@gym.errors.count, "error")} prohibited this gym from being saved:"
+      %ul
+        - @gym.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'
