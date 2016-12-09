@@ -7,9 +7,20 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %div.nav-bar
-      %img.image{:src => "https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG"}
-      %h3.title Pokemon Database
-      %a{:href => pokemons_path}
-    %div.content
+    %nav.navbar.navbar-light
+      %a.navbar-brand{:href => "#"}
+        %img.image{:src => "https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG"}
+        %span Pokemon Database
+      %ul.nav.navbar-nav
+        %li.nav-item
+          %a.nav-link{:href => pokemons_path} Pokemanz
+        %li.nav-item
+          %a.nav-link{:href => trainers_path} Trainers
+        %li.nav-item
+          %a.nav-link{:href => gyms_path} Gyms
+        %li.nav-item
+          %a.nav-link{:href => items_path} Items 
+        %li.nav-item
+          %a.nav-link{:href => stores_path} Stores 
+    .container.content
       = yield
