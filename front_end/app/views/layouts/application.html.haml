@@ -7,4 +7,9 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
+    %div.nav-bar
+      %img.image{:src => "https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG"}
+      %h3.title Pokemon Database
+      %a{:href => pokemons_path}
+    %div.content
+      = yield
