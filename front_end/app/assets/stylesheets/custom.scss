@@ -35,3 +35,40 @@
   font-family:pokemon;
   margin-top:15px;
 }
+
+.index .col-md-3 {
+  img {
+    position:relative;
+    top:0;
+    left:0;
+    opacity:.2;
+    width:100%;
+  }
+  span {
+    position:relative;
+    top:200px;
+    left:40px;
+    font-size:20px;
+    font-family:"Arial Black", Gadget, sans-serif;
+    color: gray;
+    z-index:1;
+  }
+}
+
+.index .col-md-3:hover {
+  img {
+    opacity:.8;
+  }
+  span {
+    color: black;
+    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+  }
+  a {
+    text-decoration:none;
+  }
+}
+
+.page-title {
+    font-family: "Arial Black", Gadget, sans-serif;
+    text-align: center;
+}

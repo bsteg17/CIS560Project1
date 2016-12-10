@@ -1,19 +1,13 @@
-%h1 Pokemons
+%h1.page-title POKEMON
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
-
-  %tbody
-    - @pokemons.each do |pokemon|
-      %tr
-        %td= link_to 'Show', pokemon
-        %td= link_to 'Edit', edit_pokemon_path(pokemon)
-        %td= link_to 'Destroy', pokemon, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+.index
+  - @pokemons.each_with_index do |pokemon, i|
+    - if i % 4 == 0
+      .row
+    .col-md-3
+      %a{:href => pokemon_path(pokemon.pokemon_name)}
+        %span= pokemon.pokemon_name.upcase
+        = image_tag pokemon.image
 %br
 
 = link_to 'New Pokemon', new_pokemon_path
