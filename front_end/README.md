@@ -1,24 +1,20 @@
-# README
+# DIRECTIONS for running the rails server on your own laptop
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+LINUX
+------
+1. follow these installation instructions, don't worry about the ones about making your own app though:
+https://gorails.com/setup/ubuntu/14.04
 
-Things you may want to cover:
 
-* Ruby version
+WINDOWS
+-------
+windows isn't typically considered an acceptable rails dev environment, but if you have no other option then you can try these instructions:
+https://blog.engineyard.com/2012/rails-development-on-windows-seriously
 
-* System dependencies
+MAC
+-------
+https://gorails.com/setup/osx/10.11-el-capitan
 
-* Configuration
+once you have rails properly installed just `cd` into the front_end directory and enter the command `rails s`
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+if the server boots properly then you can visit the site by going to `localhost:3000` in your browser
