@@ -1,5 +1,17 @@
 %p#notice= notice
 
+%h3= @pokemon.pokemon_name
+%p
+  = image_tag @pokemon.image
+%table
+  %thead
+    %th Combat Power
+    %th Health Power
+  %tbody
+    %tr
+      %td= @pokemon.cp 
+      %td= @pokemon.hp
+
 
 = link_to 'Edit', edit_pokemon_path(@pokemon)
 \|
