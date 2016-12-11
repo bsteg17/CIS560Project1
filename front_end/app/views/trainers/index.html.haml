@@ -1,19 +1,9 @@
-%h1 Trainers
+%h1.page-title TRAINERS
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
-
-  %tbody
-    - @trainers.each do |trainer|
-      %tr
-        %td= link_to 'Show', trainer
-        %td= link_to 'Edit', edit_trainer_path(trainer)
-        %td= link_to 'Destroy', trainer, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+- @trainers.each_with_index do |trainer, i|
+  - if i % 4 == 0
+    .row
+  .col-md-3
+    %a{:href => trainer_path(trainer.trainer_name)}
+      %span= trainer.trainer_name.upcase
 %br
-
-= link_to 'New Trainer', new_trainer_path

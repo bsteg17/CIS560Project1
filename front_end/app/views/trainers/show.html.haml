@@ -1,6 +1,12 @@
 %p#notice= notice
 
-
-= link_to 'Edit', edit_trainer_path(@trainer)
-\|
+%h3.page-title{:style => "text-align:left;"}
+  = @trainer.trainer_name.upcase
+%br
+.row
+  .col-md-3
+    TEAM:
+  .col-md-3
+    = link_to @trainer.team_name.upcase, team_path(@trainer.team_name)
+%br
 = link_to 'Back', trainers_path
