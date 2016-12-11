@@ -1,17 +1,23 @@
 %p#notice= notice
+.row
+  .col-md-5
+    %h3.page-title
+      = @pokemon.pokemon_name.upcase
+.row
+  .col-md-5
+    = image_tag @pokemon.image, :class => "show_img"
+.row
+  .col-md-3
+    Combat Power
+  .col-md-2
+    = @pokemon.cp 
+.row
+  .col-md-3
+    Health Power
+  .col-md-2
+    = @pokemon.hp 
 
-%h3= @pokemon.pokemon_name
-%p
-  = image_tag @pokemon.image
-%table
-  %thead
-    %th Combat Power
-    %th Health Power
-  %tbody
-    %tr
-      %td= @pokemon.cp 
-      %td= @pokemon.hp
-
+%br
 
 = link_to 'Edit', edit_pokemon_path(@pokemon)
 \|
