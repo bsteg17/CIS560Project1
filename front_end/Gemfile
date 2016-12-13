@@ -53,3 +53,8 @@ gem 'haml-rails'
 
 # bootstrap
 gem 'bootstrap', '~> 4.0.0.alpha5'
+
+gem "font-awesome-rails"
+
+gem 'composite_primary_keys', '~>9.0.0'
+

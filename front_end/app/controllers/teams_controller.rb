@@ -4,7 +4,8 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    @teams = Team.all
+    query = (!params[:filter].nil? ? (params[:filter].length == 1 ? params[:filter]+"%" : "%"+params[:filter]+"%") : "")
+    @teams = Team.all.where('upper(team_name) like ?', query.upcase) 
   end
 
   # GET /teams/1

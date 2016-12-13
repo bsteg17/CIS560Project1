@@ -1,19 +1,34 @@
-%h1 Items
-
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
-
-  %tbody
-    - @items.each do |item|
-      %tr
-        %td= link_to 'Show', item
-        %td= link_to 'Edit', edit_item_path(item)
-        %td= link_to 'Destroy', item, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+%h1.page-title ITEMS
 %br
-
-= link_to 'New Item', new_item_path
+.row
+  .col-md-12
+    .page-title
+      - ('A'..'Z').each do |letter|
+        %a{:href => '/items?filter='+letter}= letter.upcase
+= form_tag items_path, :method => :get do
+  .row{:style => "margin-top:5px;margin-bottom:5px;"}
+    .offset-md-4.col-md-4
+      = text_field_tag "filter", "", :class => "form-control"
+  .row
+    .offset-md-5.col-md-2
+      = submit_tag "SEARCH", :class => "btn btn-default arial-black adjust-input"
+%br
+- @items.each_with_index do |item, i|
+  - if i % 4 == 0
+    .row
+  .col-md-3
+    - stores = ActiveRecord::Base.connection.execute('select loc, city_name from stores_items where item_name = "'+item.item_name+'"')
+    - if stores.size == 0
+      %h4= item.item_name.upcase
+    - else
+      %a{:href => "", :data => {:toggle => "collapse", :target => ("#stores"+i.to_s)}}
+        %h4
+          = item.item_name.upcase
+          = fa_icon "caret-down"
+        .row.collapse{:id => ("stores"+i.to_s)}
+          .col-md-6
+            %h5.underline STORES
+            - stores.each do |store_attrs|
+              - store = Store.find([store_attrs[0], store_attrs[1]])
+              %a{:href => store_path([store.loc, store.city_name])}
+                %h5= "#{store.loc}, #{store.city_name}"
