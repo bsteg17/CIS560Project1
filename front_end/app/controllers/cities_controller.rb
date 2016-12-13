@@ -4,7 +4,7 @@ class CitiesController < ApplicationController
   # GET /cities
   # GET /cities.json
   def index
-    query = (!params[:filter].nil? ? params[:filter] : "A%")
+    query = (!params[:filter].nil? ? (params[:filter].length == 1 ? params[:filter]+"%" : "%"+params[:filter]+"%") : "")
     @cities = City.all.where('upper(city_name) like ?', query.upcase) 
   end
 

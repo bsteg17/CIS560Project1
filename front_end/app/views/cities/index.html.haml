@@ -1,32 +1,43 @@
 %h1.page-title CITIES 
+%br
 .row
-  .col-md-6
+  .col-md-12
     .page-title
       - ('A'..'Z').each do |letter|
-        %a{:href => '/cities?filter='+letter+'%25'}= letter.upcase
-  .col-md-6
-    .form
-      %b Search:
-      %input{:id => 'search'}
-      %button{:onclick => ""}
+        %a{:href => '/cities?filter='+letter}= letter.upcase
+= form_tag cities_path, :method => :get do
+  .row{:style => "margin-top:5px;margin-bottom:5px;"}
+    .offset-md-4.col-md-4
+      = text_field_tag "filter", "", :class => "form-control"
+  .row
+    .offset-md-5.col-md-2
+      = submit_tag "SEARCH", :class => "btn btn-default arial-black adjust-input"
 %br
 - @cities.each_with_index do |city, i|
+  - gyms = Gym.where("city_name = ?", city.city_name) 
+  - stores = Store.where("city_name = ?", city.city_name)
   - if i % 4 == 0
     .row
   .col-md-3
-    %h3{:style => "text-decoration:underline;"}= city.city_name.upcase
-    .row
-      .col-md-6
-        %h5.underline GYMS
-        - Gym.where("city_name = ?", city.city_name).each do |gym|
-          .row
-            .col-md-12
-              %a{:href => gym_path(gym.num)}
-                %h5= "#{gym.num} - #{gym.badge.slice! " Badge"}"
-      .col-md-6
-        %h5.underline STORES
-        - Store.where("city_name = ?", city.city_name).each do |store|
-          .row
-            .col-md-12
-              %a{:href => store_path(store.loc)}
-                %h5= "#{store.city_name}, #{store.loc}"
+    - if gyms.size == 0 && stores.size == 0
+      %h4= city.city_name.upcase
+    - else
+      %a{:href => "", :data => {:toggle => "collapse", :target => "#gyms_and_stores"}}
+        %h4
+          = city.city_name.upcase
+          = fa_icon "caret-down"
+      .row.collapse{:id => "gyms_and_stores"}
+        .col-md-6
+          %h5 GYMS
+          - gyms.each do |gym|
+            .row
+              .col-md-12
+                %a{:href => gym_path(:id => [gym.num, gym.city_name])}
+                  %h5= "#{gym.num} - #{gym.badge.chomp(" Badge")}"
+        .col-md-6
+          %h5 STORES
+          - stores.each do |store|
+            .row
+              .col-md-12
+                %a{:href => store_path(store.loc)}
+                  %h5= "#{store.city_name}, #{store.loc}"

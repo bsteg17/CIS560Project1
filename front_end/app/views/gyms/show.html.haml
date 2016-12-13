@@ -1,5 +1,18 @@
 %p#notice= notice
 
+%h3= "#{@gym.city_name} - #{@gym.num} "
+
+.row
+  .col-md-3
+    %b Badge
+  .col-md-3
+    = @gym.badge
+.row
+  .col-md-3
+    %b Leader
+  .col-md-3
+    %a{:href => trainer_path(@gym.leader_name)}
+      = @gym.leader_name
 
 = link_to 'Edit', edit_gym_path(@gym)
 \|
