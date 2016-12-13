@@ -61,4 +61,11 @@ select ci.item_name, group_concat(distinct city_name,", ", loc separator "; ") c
 from stores_items si, combat_items ci
 where ci.item_name = si.item_name
 group by ci.item_name;
--- 10) Which trainer catch the most pokemons per day? Erisa
+-- 10) which trainers catched pokemons on days when the date and the month number were the same? Erisa
+select * from pokemons_trainers pt where date like '2016-01-01' or date like '2016-02-02' or date like '2016-03-03' or 
+date like '2016-04-04' or date like '2016-05-05' or date like '2016-06-06' or date like '2016-07-07' or
+date like '2016-08-08' or date like '2016-09-09' or date like '2016-10-10' or date like '2016-11-11' or date like '2016-12-12' 
+ORDER BY `date` DESC
+--The worst query I have ever written!!!!
+
+
