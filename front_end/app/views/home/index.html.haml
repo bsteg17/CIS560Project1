@@ -1,10 +1,12 @@
 %h3.page-title STATS
 %br
--# most_gyms = ActiveRecord::Base.connection.execute("select team_name, c from (select team_name, count(*) as c from trainers join teams on teams.team_name=trainers.team_name group by trainers.team_name) as s having c = (select max(x.xc) from (select t.team_name, count(t.) as xc from trainers as t group by trainers.team_name) as x);")
+- most_gyms = ActiveRecord::Base.connection.execute("select team_name, members from (select trainers.team_name, count(*) as members from trainers join teams on teams.team_name=trainers.team_name group by trainers.team_name) as s having members = (select max(x.xc) from (select t.team_name, count(t.team_name) as xc from trainers as t group by t.team_name) as x);")
 %hr
 %h4 WHICH TEAM LEADS THE MOST GYMS?
 %hr
--#= most_gyms
+- most_gyms.each do |r|
+  %b
+    = link_to "#{r[0].upcase} | ", team_path(r[0])
 - caught_most = ActiveRecord::Base.connection.execute("select p.pokemon_name,most,image,cp,hp from pokemons p join (select pokemon_name , count(*) most from pokemons_trainers group by pokemon_name)x on x.pokemon_name=p.pokemon_name where x.most=(select max(most2)from (select count(*) most2 from pokemons_trainers group by pokemon_name)y)")
 %hr
 %h4 WHICH POKEMON HAS BEEN CAUGHT THE MOST?
