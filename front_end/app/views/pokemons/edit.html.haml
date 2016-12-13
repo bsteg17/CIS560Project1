@@ -1,6 +1,34 @@
 %h1 Editing pokemon
 
-= render 'form'
+= form_for @pokemon do |f|
+  - if @pokemon.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@pokemon.errors.count, "error")} prohibited this pokemon from being saved:"
+      %ul
+        - @pokemon.errors.full_messages.each do |msg|
+          %li= msg
+  %label 
+    %b Name
+  %label
+    %b= @pokemon.pokemon_name
+  %br
+  %label 
+    %b Image URL
+  = f.text_field :image
+  %br
+
+  %label 
+    %b Combat Power
+  = f.text_field :cp
+  %br
+
+  %label 
+    %b Hit Points 
+  = f.text_field :hp
+  %br
+
+  .actions
+    = f.submit 'Save'
 
 = link_to 'Show', @pokemon
 \|
