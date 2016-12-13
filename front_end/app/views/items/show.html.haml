@@ -1,7 +1,41 @@
 %p#notice= notice
 
+- combat = ActiveRecord::Base.connection.execute("select * from combat_items where item_name = '"+@item.item_name+"';")
+- healing = ActiveRecord::Base.connection.execute("select * from healing_items where item_name = '"+@item.item_name+"';")
+- pokeball = ActiveRecord::Base.connection.execute("select * from pokeballs where item_name = '"+@item.item_name+"';")
+- if combat.size > 0
+  - item_type = "combat_type"
+- if healing.size > 0
+  - item_type = "healing_type"
+- if pokeball.size > 0
+  - item_type = "pokeball_type"
+
 %h3.arial-black= @item.item_name
 %br
+.row
+  .col-md-3
+    %b Item Type:
+  .col-md-3
+    = item_type.humanize.upcase
+.row
+  - if item_type == "combat_type"
+    .col-md-3
+      Combat Points
+    .col-md-3
+      - ActiveRecord::Base.connection.execute("select cp from combat_items where item_name = '"+@item.item_name+"'").each do |i|
+        = i[0]
+  - elsif item_type == "healing_type"
+    .col-md-3
+      Healing Points
+    .col-md-3
+      - ActiveRecord::Base.connection.execute("select amount_healed from healing_items where item_name = '"+@item.item_name+"'").each do |i|
+        = i[0]
+  - elsif item_type == "pokeball_type"
+    .col-md-3
+      Catch Rate
+    .col-md-3
+      - ActiveRecord::Base.connection.execute("select catch_rate from pokeballs where item_name = '"+@item.item_name+"'").each do |i|
+        = i[0]
 %h5.underline STORES
 - ActiveRecord::Base.connection.execute('select loc, city_name from stores_items where item_name = "'+@item.item_name+'"').each do |store_attrs|
   - store = Store.find([store_attrs[0], store_attrs[1]])
