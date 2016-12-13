@@ -1,11 +1,11 @@
 -- 1) Which team has the most of gyms? Tyler
-select team_name, c from
-	(select team_name, count(*) as c from trainers
+select team_name, members from
+	(select trainers.team_name, count(*) as members from trainers
 	join teams on teams.team_name=trainers.team_name group by trainers.team_name) as s
-	having c = (select max(x.xc) from
-		(select t.team_name, count(t.album_id) as xc
+	having members = (select max(x.xc) from
+		(select t.team_name, count(t.team_name) as xc
 		from trainers as t
-		group by trainers.team_name) as x);
+		group by t.team_name) as x);
 
 -- 2) Which pokemons were caught the most times? Erisa
 select p.pokemon_name,image,cp,hp from pokemons p join (select pokemon_name , count(*) most from pokemons_trainers group by pokemon_name)x
