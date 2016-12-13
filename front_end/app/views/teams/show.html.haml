@@ -1,6 +1,13 @@
 %p#notice= notice
 
-
+%h3.arial-black= @team.team_name.upcase
+%br
+- members = Trainer.where("team_name = ?", @team.team_name)
+- if members.size > 0
+  %h5.arial-black.underline MEMBERS
+  %br
+  - members.each do |member|
+    %h6
+      = link_to member.trainer_name.upcase, trainer_path(member.trainer_name)
+%br
 = link_to 'Edit', edit_team_path(@team)
-\|
-= link_to 'Back', teams_path

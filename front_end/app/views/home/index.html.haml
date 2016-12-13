@@ -1,4 +1,79 @@
-%h3 Home
-%p this is the homepage
-- (1..50).to_a.each do |i|
-  %p= i
+%h3.page-title STATS
+%br
+-# most_gyms = ActiveRecord::Base.connection.execute("select team_name, c from (select team_name, count(*) as c from trainers join teams on teams.team_name=trainers.team_name group by trainers.team_name) as s having c = (select max(x.xc) from (select t.team_name, count(t.) as xc from trainers as t group by trainers.team_name) as x);")
+%hr
+%h4 WHICH TEAM LEADS THE MOST GYMS?
+%hr
+-#= most_gyms
+- caught_most = ActiveRecord::Base.connection.execute("select p.pokemon_name,most,image,cp,hp from pokemons p join (select pokemon_name , count(*) most from pokemons_trainers group by pokemon_name)x on x.pokemon_name=p.pokemon_name where x.most=(select max(most2)from (select count(*) most2 from pokemons_trainers group by pokemon_name)y)")
+%hr
+%h4 WHICH POKEMON HAS BEEN CAUGHT THE MOST?
+%hr
+- caught_most.each do |r|
+  %b
+    = link_to r[0].upcase, pokemon_path(r[0])
+    = "(caught by #{r[1]} trainers)"
+- price_range = ActiveRecord::Base.connection.execute("select item_name from items where price>=100 and price<=200;")
+%hr
+%h4 WHAT ARE THE ITEMS THAT RANGE FROM ₱100 TO ₱200?
+%hr
+- price_range.each do |r|
+  %b
+    = link_to "#{r[0].upcase} | ", item_path(r[0])
+- uncaught = ActiveRecord::Base.connection.execute("select * from pokemons where pokemon_name not in ( select p.pokemon_name from pokemons p, pokemons_trainers pt where p.pokemon_name = pt.pokemon_name);")
+%hr
+%h4 WHICH POKEMON HAVE NEVER BEEN CAUGHT?
+%hr
+- uncaught.each do |r|
+  %b
+    = link_to "#{r[0].upcase} | ", pokemon_path(r[0])
+- avg_heal = ActiveRecord::Base.connection.execute("select avg(amount_healed) avg_healed from healing_items")
+- avg_combat = ActiveRecord::Base.connection.execute("select avg(cp) avg_cp from combat_items")
+- avg_cr = ActiveRecord::Base.connection.execute("select avg(catch_rate) avg_catch from pokeballs")
+- avg_hp = ActiveRecord::Base.connection.execute("select avg(hp) avg_hp from pokemons")
+- avg_cp = ActiveRecord::Base.connection.execute("select avg(cp) avg_cp from pokemons")
+%hr
+%h4 AVERAGES
+%hr
+%h5 AVERAGE HEALTH BOOST
+- avg_heal.each do |r|
+  %b
+    = r[0].floor
+%h5 AVERAGE COMBAT BOOST
+- avg_combat.each do |r|
+  %b
+    = r[0].floor
+%h5 AVERAGE CATCH RATE
+- avg_cr.each do |r|
+  %b
+    = r[0].floor
+%h5 AVERAGE HP
+- avg_hp.each do |r|
+  %b
+    = r[0].floor
+%h5 AVERAGE CP
+- avg_cp.each do |r|
+  %b
+    = r[0].floor
+- leads_most = ActiveRecord::Base.connection.execute("select leader_name, count(badge)num_gyms, GROUP_CONCAT(badge) from gyms group by leader_name order by num_gyms desc")
+%hr
+%h4 WHICH TRAINERS ARE THE LEADER OF THE MOST GYMS?
+%hr
+- leads_most.each_with_index do |r, i|
+  %b
+    = "#{i+1}."
+    = link_to "#{r[0].upcase} (#{r[1]}) | ", trainer_path(r[0])
+- most_pow = ActiveRecord::Base.connection.execute("select x.pokemon_name, t.trainer_name from trainers t join pokemons_trainers pt on pt.trainer_name = t.trainer_name join (select p.* from pokemons p join (select max(hp) as max_hp from pokemons)m on p.hp = m.max_hp)x on x.pokemon_name = pt.pokemon_name")
+%hr
+%h4 WHO OWNS THE MOST POWERFUL POKEMON?
+%hr
+- most_pow.each_with_index do |r, i|
+  %b
+    = link_to "#{r[1].upcase} (#{r[0]})", trainer_path(r[1])
+- cities = ActiveRecord::Base.connection.execute('select ci.item_name, group_concat(distinct city_name,", ", loc separator "; ") cities from stores_items si, combat_items ci where ci.item_name = si.item_name group by ci.item_name;')
+%hr
+%h4 IN WHICH CITIES CAN COMBAT ITEMS BE FOUND?
+%hr
+- cities.each_with_index do |r, i|
+  %b
+    = "#{r[1].upcase} | "
