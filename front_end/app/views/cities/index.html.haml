@@ -39,5 +39,5 @@
           - stores.each do |store|
             .row
               .col-md-12
-                %a{:href => store_path(store.loc)}
+                %a{:href => store_path([store.loc, store.city_name])}
                   %h5= "#{store.city_name}, #{store.loc}"

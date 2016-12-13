@@ -1,6 +1,14 @@
 %p#notice= notice
 
-
+%h3.arial-black= @item.item_name
+%br
+%h5.underline STORES
+- ActiveRecord::Base.connection.execute('select loc, city_name from stores_items where item_name = "'+@item.item_name+'"').each do |store_attrs|
+  - store = Store.find([store_attrs[0], store_attrs[1]])
+  .row
+    .col-md-3
+      %b= link_to "#{store.loc}, #{store.city_name}", store_path([store.loc, store.city_name])
+%br
 = link_to 'Edit', edit_item_path(@item)
 \|
 = link_to 'Back', items_path

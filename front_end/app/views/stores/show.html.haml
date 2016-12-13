@@ -1,6 +1,18 @@
 %p#notice= notice
 
-
+%h3.arial-black= "#{@store.loc} -- #{@store.city_name}" 
+%br
+%h5.arial-black.underline ITEMS
+%br
+- ActiveRecord::Base.connection.execute('select item_name from stores_items where loc = "'+@store.loc+'" and city_name = "'+@store.city_name+'"').each do |item_name|
+  - item = Item.find(item_name[0])
+  .row
+    .col-md-3
+      %b= link_to item.item_name, item_path(item.item_name)
+    .col-md-3
+      = "₱ #{item.price.floor}"
+  %br
+%br
 = link_to 'Edit', edit_store_path(@store)
 \|
 = link_to 'Back', stores_path

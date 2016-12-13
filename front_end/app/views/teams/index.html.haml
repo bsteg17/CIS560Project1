@@ -21,11 +21,11 @@
     - if trainers.size == 0
       %h4= team.team_name.upcase
     - else
-      %a{:href => "", :data => {:toggle => "collapse", :target => "#trainers"}}
+      %a{:href => "", :data => {:toggle => "collapse", :target => ("#trainers"+i.to_s)}}
         %h4
           = team.team_name.upcase
           = fa_icon "caret-down"
-      .row.collapse{:id => "trainers"}
+      .row.collapse{:id => ("trainers"+i.to_s)}
         .col-md-6
           - trainers.each do |trainer|
             .row
