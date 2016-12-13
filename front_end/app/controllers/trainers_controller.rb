@@ -4,7 +4,12 @@ class TrainersController < ApplicationController
   # GET /trainers
   # GET /trainers.json
   def index
-    @trainers = Trainer.all
+    @teams = [];
+    Team.all.each do |t|
+      team = t
+      trainers = Trainer.where("team_name = ?", team.team_name)
+      @teams.push({team: team, trainers: trainers});
+    end
   end
 
   # GET /trainers/1

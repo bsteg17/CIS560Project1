@@ -1,0 +1,32 @@
+%h1.page-title CITIES 
+.row
+  .col-md-6
+    .page-title
+      - ('A'..'Z').each do |letter|
+        %a{:href => '/cities?filter='+letter+'%25'}= letter.upcase
+  .col-md-6
+    .form
+      %b Search:
+      %input{:id => 'search'}
+      %button{:onclick => ""}
+%br
+- @cities.each_with_index do |city, i|
+  - if i % 4 == 0
+    .row
+  .col-md-3
+    %h3{:style => "text-decoration:underline;"}= city.city_name.upcase
+    .row
+      .col-md-6
+        %h5.underline GYMS
+        - Gym.where("city_name = ?", city.city_name).each do |gym|
+          .row
+            .col-md-12
+              %a{:href => gym_path(gym.num)}
+                %h5= "#{gym.num} - #{gym.badge.slice! " Badge"}"
+      .col-md-6
+        %h5.underline STORES
+        - Store.where("city_name = ?", city.city_name).each do |store|
+          .row
+            .col-md-12
+              %a{:href => store_path(store.loc)}
+                %h5= "#{store.city_name}, #{store.loc}"

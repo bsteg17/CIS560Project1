@@ -1,19 +1,12 @@
-%h1 Gyms
+%h1.page-title CITIES / GYMS
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
-
-  %tbody
-    - @gyms.each do |gym|
-      %tr
-        %td= link_to 'Show', gym
-        %td= link_to 'Edit', edit_gym_path(gym)
-        %td= link_to 'Destroy', gym, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Gym', new_gym_path
+- @teams.each_with_index do |team, i|
+  - if i % 4 == 0
+    .row
+  .col-md-3
+    %h3{:style => "text-decoration:underline;"}= team[:team].team_name.upcase
+    %ul{:style => "padding:0;"}
+      - [:trainers].each do |trainer|
+        %li{:style => "list-style-type:none;text-align:left;"}
+          %a{:href => trainer_path(trainer.trainer_name)}
+            %h4= trainer.trainer_name.upcase

@@ -1,9 +1,12 @@
-%h1.page-title TRAINERS
+%h1.page-title TEAMS / TRAINERS
 
-- @trainers.each_with_index do |trainer, i|
+- @teams.each_with_index do |team, i|
   - if i % 4 == 0
     .row
   .col-md-3
-    %a{:href => trainer_path(trainer.trainer_name)}
-      %span= trainer.trainer_name.upcase
-%br
+    %h3{:style => "text-decoration:underline;"}= team[:team].team_name.upcase
+    %ul{:style => "padding:0;"}
+      - team[:trainers].each do |trainer|
+        %li{:style => "list-style-type:none;text-align:left;"}
+          %a{:href => trainer_path(trainer.trainer_name)}
+            %h4= trainer.trainer_name.upcase
