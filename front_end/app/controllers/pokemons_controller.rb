@@ -28,13 +28,9 @@ class PokemonsController < ApplicationController
     @pokemon = Pokemon.new(pokemon_params)
 
     respond_to do |format|
-      if @pokemon.save
+        ActiveRecord::Base.connection.execute("insert into pokemons (pokemon_name, image, cp, hp) values ('"+params[:pokemon][:pokemon_name]+"', '"+params[:pokemon][:image]+"', '"+params[:pokemon][:cp]+"','"+params[:pokemon][:hp]+"');")
         format.html { redirect_to @pokemon, notice: 'Pokemon was successfully created.' }
         format.json { render :show, status: :created, location: @pokemon }
-      else
-        format.html { render :new }
-        format.json { render json: @pokemon.errors, status: :unprocessable_entity }
-      end
     end
   end
 
@@ -42,13 +38,9 @@ class PokemonsController < ApplicationController
   # PATCH/PUT /pokemons/1.json
   def update
     respond_to do |format|
-      if @pokemon.update(pokemon_params)
-        format.html { redirect_to @pokemon, notice: 'Pokemon was successfully updated.' }
-        format.json { render :show, status: :ok, location: @pokemon }
-      else
-        format.html { render :edit }
-        format.json { render json: @pokemon.errors, status: :unprocessable_entity }
-      end
+      ActiveRecord::Base.connection.execute("update pokemons set image='"+params[:pokemon][:image]+"', cp='"+params[:pokemon][:cp]+"', hp='"+params[:pokemon][:hp]+"' where pokemon_name = '"+params[:id]+"';")
+      format.html { redirect_to @pokemon, notice: 'Pokemon was successfully updated.' }
+      format.json { render :show, status: :ok, location: @pokemon }
     end
   end
 
@@ -70,6 +62,6 @@ class PokemonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pokemon_params
-      params.fetch(:pokemon, {})
+      params.fetch(:pokemon, {}).permit!
     end
 end

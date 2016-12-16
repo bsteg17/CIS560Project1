@@ -4,7 +4,8 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    query = (!params[:filter].nil? ? (params[:filter].length == 1 ? params[:filter]+"%" : "%"+params[:filter]+"%") : "")
+    @items = Item.all.where('upper(item_name) like ?', query.upcase) 
   end
 
   # GET /items/1
@@ -64,7 +65,7 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      @item = Item.find(params[:id].sub('%period','.'))
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

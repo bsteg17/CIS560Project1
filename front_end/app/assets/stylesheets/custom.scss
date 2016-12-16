@@ -6,7 +6,7 @@
 .navbar-brand:hover .image {
     -webkit-animation:spin 4s linear 2;
     -moz-animation:spin 4s linear 2;
-    animation:spin 4s linear 2;
+    transform: scale(0.9);
 }
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
